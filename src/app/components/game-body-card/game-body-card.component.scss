@@ -1,0 +1,38 @@
+.nav-spacer {
+    flex: 1 1 auto;
+}
+mat-card-actions {
+  display: flow-root;
+  button {
+    float: right;
+  }
+}
+mat-card {
+  padding-top: 0;
+}
+
+#score {
+  margin: 0 auto;
+  height: 72px;
+  padding: 16px;
+  font-weight: 500;
+  box-sizing: border-box;
+  position: relative;
+}
+#score-panel {
+  display: table;
+  margin: 0 auto;
+}
+#score-mark {
+  height: 40px;
+  width: 40px;
+  user-select: none;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: #bdbdbd;
+  text-align: center;
+  line-height: 40px;
+  font-size: 24px;
+  color: #ffffff;
+  margin-right: 16px;
+}

@@ -1,7 +1,20 @@
-<mat-toolbar color="primary">
+<mat-toolbar>
   <mat-toolbar-row>
-    <button mat-mini-fab>Begin</button>
+    <button id="play_arrow">
+      <a routerLink="/dashboard">
+        <i class="material-icons">
+        play_arrow
+        </i>
+      </a>
+    </button>
     <span class="nav-spacer"></span>
-    <button mat-mini-fab>Score</button>
+    <button id="reorder">
+      <a routerLink="/leaderboard">
+        <i class="material-icons">
+        reorder
+        </i>
+      </a>
+    </button>
+    <!-- <button mat-mini-fab>Score</button> -->
   </mat-toolbar-row>
 </mat-toolbar>
