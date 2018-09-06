@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { scoreData } from './scoredats';
+import { Data } from './data';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ import { scoreData } from './scoredats';
 export class MoviegameService {
 
   private scoredatasUrl = 'api/scoredatas';
+  private datasUrl = 'api/datas';
 
   constructor( private http: HttpClient ) { }
 
@@ -20,6 +22,14 @@ export class MoviegameService {
       return of(result as T);
     };
   }
+  getDatas (): Observable<Data[]> {
+
+    return this.http.get<Data[]>(this.datasUrl)
+      .pipe(
+        catchError(this.handleError('getDatas', []))
+      );
+  }
+
 
   getScoreDatas (): Observable<scoreData[]> {
 

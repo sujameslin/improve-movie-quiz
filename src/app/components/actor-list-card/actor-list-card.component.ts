@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Data } from '../../data';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { MoviegameService } from '../../moviegame.service';
 
 @Component({
   selector: 'app-actor-list-card',
@@ -6,10 +10,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./actor-list-card.component.scss']
 })
 export class ActorListCardComponent implements OnInit {
-
-  constructor() { }
+  datas: Data[];
+  constructor(
+    private moviegameservice :MoviegameService,
+    private route: ActivatedRoute,
+    private location: Location
+  ) { }
 
   ngOnInit() {
+    this.getDatas();
   }
+  getDatas(): void {
+    this.moviegameservice.getDatas()
+        .subscribe(datas => this.datas = datas);
+        console.log("this.datas");
+  }
+
 
 }
