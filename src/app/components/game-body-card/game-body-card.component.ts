@@ -3,6 +3,8 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { Location } from '@angular/common';
+import { Data } from '../../data';
+import { MoviegameService } from '../../moviegame.service';
 
 @Component({
   selector: 'app-game-body-card',
@@ -10,40 +12,56 @@ import { Location } from '@angular/common';
   styleUrls: ['./game-body-card.component.scss']
 })
 export class GameBodyCardComponent implements OnInit {
- //  values = '';
- // actorlist = 'ture';
- myControl = new FormControl();
-  options: string[] = ['One', 'Two', 'Three'];
-  filteredOptions: Observable<string[]>;
 
-  // localStorage.removeItem('Array');
-  // localStorage.setItem('Array', JSON.stringify(this.array));
-  // this.array = JSON.parse(localStorage.getItem('Array'));
-  // localStorage.removeItem('Array'); 
-  constructor(private location: Location) { }
+   myControl = new FormControl();
+   options: string[];
+   filteredOptions: Observable<string[]>;
+   data : Data;
+   datas : Data[];
+   compareValue = '';
+   value1 = '';
+   score = 0;
+
+  constructor(
+      private moviegameservice :MoviegameService,
+      private location: Location
+    ) { }
 
   ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges
-      .pipe(
-        startWith('1'),
-        map(value => this._filter(value))
-      );
+    this.startOver();
   }
 
+  filteredOptions = this.myControl.valueChanges
+    .pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
+
   private _filter(value: string): string[] {
-   const filterValue = value.toLowerCase();
+    const filterValue = value.toLowerCase();
     if(!(value.length == 0)) {
-          return this.options.filter(option => option.toLowerCase().includes(filterValue));
+      return this.options.filter(option => option.toLowerCase().includes(filterValue));
     }
+
+  }
+//get one data and all datas from moviegameservice
+   startOver(): void {
+     this.moviegameservice.getData().subscribe(data => this.data = data);
+     this.moviegameservice.getDatas().subscribe(datas => {
+       this.options = datas.map(one => one.answer)
+      });
+  }
+//event when enter press
+ onEnter(value){
+  this.compareValue = 'true';
+  this.value1 = value;
+   if(this.value1 == this.data.answer){
+      ++this.score;
+   }
  }
-  // onKey(event: any) {
-  //   console.log(event.key);
-  //   if(event.key == 'Enter') {
-  //     this.actorlist = 'false';
-  //     if(this.actorlist = 'false'){
-  //       location.reload();
-  //     }
-  //   }
-  //   this.values = event.target.value;
-  // }
+//when playAgain button click
+ playAgain(): void {
+    location.reload();
+ }
+
 }

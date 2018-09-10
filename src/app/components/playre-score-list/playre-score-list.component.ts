@@ -14,7 +14,6 @@ export class PlayreScoreListComponent implements OnInit {
   scoredatas:scoreData[];
   constructor(
     private moviegameservice :MoviegameService,
-    private route: ActivatedRoute,
     private location: Location
   ) { }
 

@@ -41,7 +41,7 @@ import {
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule }    from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './in-memory-data.service';
+// import { InMemoryDataService }  from './in-memory-data.service';
 import { InMemoryScoreDataService }  from './in-memory-scoredata.service';
 
 import { AppComponent } from './app.component';

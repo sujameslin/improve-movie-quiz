@@ -1,6 +1,6 @@
 export class Data {
   id: number;
   url: string;
-  duty:string;
+  title:string;
   answer:string;
 }

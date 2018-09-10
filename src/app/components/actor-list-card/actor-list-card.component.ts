@@ -13,7 +13,6 @@ export class ActorListCardComponent implements OnInit {
   datas: Data[];
   constructor(
     private moviegameservice :MoviegameService,
-    private route: ActivatedRoute,
     private location: Location
   ) { }
 
@@ -23,7 +22,6 @@ export class ActorListCardComponent implements OnInit {
   getDatas(): void {
     this.moviegameservice.getDatas()
         .subscribe(datas => this.datas = datas);
-        console.log("this.datas");
   }
 
 
